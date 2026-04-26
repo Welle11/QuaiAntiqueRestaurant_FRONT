@@ -1,6 +1,19 @@
 {
+  "name": "QuaniAntiqueRestaurant_Front",
+  "version": "1.0.0",
+  "description": "Interface Front-end pour le restaurant Quai Antique",
+  "main": "index.js",
+  "scripts": {
+    "start": "browser-sync start --server --single --files '*.html, css/*.css, js/*.js'",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "dependencies": {
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3"
-  }
+  },
+  "devDependencies": {
+    "browser-sync": "^3.0.0"
+  },
+  "author": "Utilisateur",
+  "license": "ISC"
 }

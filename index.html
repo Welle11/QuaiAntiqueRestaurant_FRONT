@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="scss/main.css">
+    <link rel="stylesheet" href="./scss/main.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Hind+Madurai:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -36,8 +36,11 @@
                     <li class="nav-item">
                     <a class="nav-link" href="/account">Mon compte</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" data-show="disconnected">
                     <a class="nav-link" href="/signin">Connexion</a>
+                    </li>
+                    <li class="nav-item" data-show="connected">
+                    <button class="nav-link" id="signout-btn">Déconnexion</button>
                     </li>
                 </ul>
                 </div>
@@ -67,7 +70,13 @@
             </div>
         </div>
     </footer>
-    <script type="module" src="/Router/Router.js"> </script>
+    <script src="./js/script.js"></script>
+    <script type="module" src="./Router/Router.js"> </script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+<div id="loader" class="loader-overlay">
+    <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Chargement...</span>
+    </div>
+</div>
 </html>

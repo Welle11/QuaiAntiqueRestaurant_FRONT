@@ -12029,6 +12029,8 @@ p {
 }
 .image-card img {
   transition: all 0.3s;
+  height: 250px;
+  object-fit: cover;
 }
 .image-card .titre-image {
   position: absolute;
@@ -12059,3 +12061,20 @@ p {
   color: #292222;
   padding: 10px;
 }/*# sourceMappingURL=main.css.map */
+
+.loader-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.loader-overlay.hidden {
+    display: none;
+}
