@@ -19,8 +19,8 @@ jobs:
         server: ftp-welle11.alwaysdata.net
         username: welle11
         password: ${{ secrets.FTP_PASSWORD }}
-        protocol: ftp
-        port: 21
+        protocol: ftps
+        security: loose
         exclude: |
           **/.git*
           **/.git*/**
