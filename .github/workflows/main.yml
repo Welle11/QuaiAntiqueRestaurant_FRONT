@@ -1,7 +1,5 @@
 on: push
-
 name: 🚀 Deploy website on push
-
 jobs:
   web-deploy:
     name: 🎉 Deploy
@@ -9,15 +7,12 @@ jobs:
     steps:
     - name: 🚚 Get latest code
       uses: actions/checkout@v4
-
     - name: 📂 Install dependencies
       uses: actions/setup-node@v4
       with:
         node-version: '18'
-
     - name: 📂 Install npm dependencies
       run: npm install
-
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
       with:
@@ -27,12 +22,6 @@ jobs:
         protocol: ftp
         port: 21
         exclude: |
-          **/.git*
-          **/.git*/**
-          **/node_modules/bootstrap/scss/**
-          **/node_modules/bootstrap/js/**
-          **/node_modules/bootstrap-icons/icons/**
-        server-dir: /www/
           **/.git*
           **/.git*/**
           **/node_modules/bootstrap/scss/**
