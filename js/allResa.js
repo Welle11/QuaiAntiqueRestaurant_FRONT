@@ -20,15 +20,43 @@ fetch(apiUrl + "reservation", requestOptions)
         reservations.forEach(resa => {
             const date = new Date(resa.date).toLocaleDateString('fr-FR');
             html += `
-                <a href="#">
-                    <span>${sanitizeHtml(date)}</span> | 
-                    <span>${sanitizeHtml(resa.time)}</span> | 
-                    <span>${sanitizeHtml(String(resa.nbGuests))} personne(s)</span> | 
-                    <span>${sanitizeHtml(resa.allergies ?? 'Pas d\'allergie')}</span>
-                </a>`;
+                <div class="d-flex justify-content-between align-items-center mb-2 p-3 border rounded">
+                    <span>
+                         ${sanitizeHtml(date)} | 
+                         ${sanitizeHtml(resa.time)} | 
+                         ${sanitizeHtml(String(resa.nbGuests))} personne(s) | 
+                         ${sanitizeHtml(resa.allergies ?? 'Pas d\'allergie')}
+                    </span>
+                    <button 
+                        class="btn btn-danger btn-sm" 
+                        onclick="annulerReservation(${resa.id})">
+                        Annuler
+                    </button>
+                </div>`;
         });
         allReservations.innerHTML = html;
     })
     .catch(error => console.log('error', error));
 
-    
+function annulerReservation(id){
+    if(!confirm("Voulez-vous vraiment annuler cette réservation ?")){
+        return;
+    }
+
+    let myHeadersDelete = new Headers();
+    myHeadersDelete.append("X-AUTH-TOKEN", getToken());
+
+    fetch(apiUrl + "reservation/" + id, {
+        method: 'DELETE',
+        headers: myHeadersDelete,
+        redirect: 'follow'
+    })
+        .then(response => {
+            if(response.ok){
+                globalThis.location.reload();
+            } else {
+                console.log("Erreur lors de l'annulation");
+            }
+        })
+        .catch(error => console.log('error', error));
+}

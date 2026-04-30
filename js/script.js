@@ -1,7 +1,9 @@
 const tokenCookieName = "accesstoken";
 const RoleCookieName = "role";
 const signoutBtn = document.getElementById("signout-btn");
-const apiUrl = "https://welle11.alwaysdata.net/api/api/";
+const apiUrl = window.location.hostname === 'localhost' 
+    ? "http://127.0.0.1:8000/api/" 
+    : "https://welle11.alwaysdata.net/api/api/";
 signoutBtn.addEventListener("click", signout);
 
 function getRole(){
