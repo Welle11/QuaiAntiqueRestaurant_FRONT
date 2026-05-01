@@ -1,7 +1,7 @@
 const tokenCookieName = "accesstoken";
 const RoleCookieName = "role";
 const signoutBtn = document.getElementById("signout-btn");
-const apiUrl = window.location.hostname === 'localhost' 
+const apiUrl = globalThis.location.hostname === 'localhost' 
     ? "http://127.0.0.1:8000/api/" 
     : "https://welle11.alwaysdata.net/api/api/";
 signoutBtn.addEventListener("click", signout);
@@ -60,28 +60,33 @@ function showAndHideElementsForRoles(){
     const role = getRole();
     let allElementsToEdit = document.querySelectorAll('[data-show]');
     allElementsToEdit.forEach(element =>{
-        switch(element.dataset.show){
-            case 'disconnected': 
-                if(userConnected){
-                    element.classList.add("d-none");
-                }
-                break;
-            case 'connected': 
-                if(!userConnected){
-                    element.classList.add("d-none");
-                }
-                break;
-            case 'admin': 
-                if(!userConnected || role != "admin"){
-                    element.classList.add("d-none");
-                }
-                break;
-            case 'client': 
-                if(!userConnected || role != "client"){
-                    element.classList.add("d-none");
-                }
-                break;
-        }
+            switch(element.dataset.show){
+        case 'disconnected': 
+            if(userConnected){
+                element.classList.add("d-none");
+            }
+            break;
+        case 'connected': 
+            if(!userConnected){
+                element.classList.add("d-none");
+            }
+            break;
+        case 'admin': 
+            if(!userConnected || role != "admin"){
+                element.classList.add("d-none");
+            }
+            break;
+        case 'ROLE_ADMIN':
+            if(!userConnected || role != "ROLE_ADMIN"){
+                element.classList.add("d-none");
+            }
+            break;
+        case 'ROLE_USER':
+            if(!userConnected || role != "ROLE_USER"){
+                element.classList.add("d-none");
+            }
+            break;
+    }
     });
     // Cacher le loader une fois que tout est prêt
     const loader = document.getElementById("loader");
